@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Mappings;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,9 @@ namespace Application
             services.AddAutoMapper(opt => {
                 opt.AddProfiles(new List<Profile>
                 {
-
+                        new CategoryProfile(),
+                        new ProductProfile(),
+                        new AppUserProfile()
 
                 });
             

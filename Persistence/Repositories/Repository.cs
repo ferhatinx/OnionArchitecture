@@ -20,10 +20,11 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task<List<T>> GetAllAsync()
@@ -45,6 +46,11 @@ namespace Persistence.Repositories
         {
           _context.Set<T>().Remove(entity);
           await  _context.SaveChangesAsync();   
+        }
+
+        public async Task<int> CommintAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(T entity)
